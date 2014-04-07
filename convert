@@ -1,0 +1,12 @@
+#Simple bash script using ImageMagick to convert all files in a directory from *.pdf to *.png
+
+#!/bin/bash
+
+find /Users/astott/Desktop/etsy-and-website-04-05 -type f -name "*.pdf" |while read line
+do
+   dir=${line%/*}
+   file=${line##*/}
+   file=${file%.*}
+   convert -density 300 -depth 8 -quality 90 $line ${file}.png
+   echo mv ${file}.png ${dir}/${file}.png
+done
